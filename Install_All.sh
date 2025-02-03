@@ -99,4 +99,9 @@ sudo pacman -S gnupg
 # Install Telegram Desktop
 echo "Installing Telegram Desktop"
 sudo pacman -S telegram-desktop
+
+#Install MongoDB compass
+echo "Installing Mongodb Compass"
+sudo pacman -S mongodb-compass
+
 echo "Installation complete (Script by Nasir Ali)!"
