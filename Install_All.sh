@@ -104,4 +104,12 @@ sudo pacman -S telegram-desktop
 echo "Installing Mongodb Compass"
 sudo pacman -S mongodb-compass
 
+# Install Postman
+echo "Installing Postman..."
+sudo pacman -S postman --noconfirm
+
+# Install htop (interactive process viewer)
+echo "Installing htop..."
+sudo pacman -S htop --noconfirm
+
 echo "Installation complete (Script by Nasir Ali)!"
