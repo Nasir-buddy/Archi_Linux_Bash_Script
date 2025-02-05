@@ -53,32 +53,90 @@ install_nvidia_driver
 # Function to install a package if not already installed
 install_if_not_installed() {
   if ! pacman -Qs $1 > /dev/null; then
-    echo "Installing $1..."
-    sudo pacman -S $1 --noconfirm
+    echo "Do you want to install $1? (y/n)"
+    read choice
+    if [[ $choice == "y" ]]; then
+      echo "Installing $1..."
+      sudo pacman -S $1 --noconfirm
+    else
+      echo "Skipping $1 installation."
+    fi
   else
     echo "$1 is already installed."
   fi
 }
 
 # Install various software packages
-install_if_not_installed visual-studio-code-bin
-install_if_not_installed microsoft-edge-stable-bin
-install_if_not_installed brave
-install_if_not_installed google-chrome
-install_if_not_installed vlc
-install_if_not_installed gimp
-install_if_not_installed libreoffice-fresh
-install_if_not_installed nodejs
-install_if_not_installed npm
-install_if_not_installed docker
-install_if_not_installed python
-install_if_not_installed python-pip
-install_if_not_installed mongodb
-install_if_not_installed gnupg
-install_if_not_installed telegram-desktop
-install_if_not_installed mongodb-compass
-install_if_not_installed postman
-install_if_not_installed htop
+software_list=(
+  "visual-studio-code-bin"
+  "microsoft-edge-stable-bin"
+  "brave"
+  "google-chrome"
+  "vlc"
+  "gimp"
+  "libreoffice-fresh"
+  "nodejs"
+  "npm"
+  "docker"
+  "python"
+  "python-pip"
+  "mongodb"
+  "gnupg"
+  "telegram-desktop"
+  "mongodb-compass"
+  "postman"
+  "htop"
+)
+
+for software in "${software_list[@]}"; do
+  install_if_not_installed $software
+done
+
+# Additional Developer Tools
+developer_tools_list=(
+  "git"
+  "yarn"
+  "neovim"
+  "intellij-idea-community-edition"
+  "jetbrains-toolbox"
+  "rust"
+  "go"
+  "php"
+  "mysql"
+  "postgresql"
+  "dbeaver"
+)
+
+for tool in "${developer_tools_list[@]}"; do
+  install_if_not_installed $tool
+done
+
+# System Monitoring Tools
+monitoring_tools_list=(
+  "bpytop"
+  "glances"
+  "iotop"
+  "iftop"
+  "lm_sensors"
+)
+
+for tool in "${monitoring_tools_list[@]}"; do
+  install_if_not_installed $tool
+done
+
+# System Utilities
+system_utilities_list=(
+  "flameshot"
+  "timeshift"
+  "gparted"
+  "obs-studio"
+  "bleachbit"
+  "stacer"
+)
+
+for utility in "${system_utilities_list[@]}"; do
+  install_if_not_installed $utility
+done
 
 # Check and start MongoDB service if not already started
 echo "Checking MongoDB service status..."
@@ -97,14 +155,5 @@ if ! systemctl is-enabled --quiet mongodb; then
 else
   echo "MongoDB service is already enabled."
 fi
-
-# # Check and install Mongoose via npm
-# if ! npm list -g mongoose > /dev/null; then
-#   echo "Installing Mongoose..."
-#   npm install -g mongoose
-# else
-#   echo "Mongoose is already installed."
-# fi
-
 
 echo "Installation complete (Script by Nasir Ali)!"
