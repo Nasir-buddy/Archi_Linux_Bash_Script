@@ -11,16 +11,28 @@ install_nvidia_driver() {
 
   case $choice in
     1)
-      echo "Installing nvidia-dkms..."
-      sudo pacman -S nvidia-dkms --noconfirm
+      if ! pacman -Qs nvidia-dkms > /dev/null; then
+        echo "Installing nvidia-dkms..."
+        sudo pacman -S nvidia-dkms --noconfirm
+      else
+        echo "nvidia-dkms is already installed."
+      fi
       ;;
     2)
-      echo "Installing nvidia-open-dkms..."
-      sudo pacman -S nvidia-open-dkms --noconfirm
+      if ! pacman -Qs nvidia-open-dkms > /dev/null; then
+        echo "Installing nvidia-open-dkms..."
+        sudo pacman -S nvidia-open-dkms --noconfirm
+      else
+        echo "nvidia-open-dkms is already installed."
+      fi
       ;;
     3)
-      echo "Installing nvidia-lts..."
-      sudo pacman -S nvidia-lts --noconfirm
+      if ! pacman -Qs nvidia-lts > /dev/null; then
+        echo "Installing nvidia-lts..."
+        sudo pacman -S nvidia-lts --noconfirm
+      else
+        echo "nvidia-lts is already installed."
+      fi
       ;;
     4)
       echo "No NVIDIA driver will be installed."
@@ -38,78 +50,61 @@ sudo pacman -Syu --noconfirm
 # Install the selected NVIDIA driver
 install_nvidia_driver
 
-# Install Visual Studio Code
-echo "Installing Visual Studio Code..."
-sudo pacman -S visual-studio-code-bin --noconfirm
+# Function to install a package if not already installed
+install_if_not_installed() {
+  if ! pacman -Qs $1 > /dev/null; then
+    echo "Installing $1..."
+    sudo pacman -S $1 --noconfirm
+  else
+    echo "$1 is already installed."
+  fi
+}
 
-# Install Microsoft Edge
-echo "Installing Microsoft Edge..."
-sudo pacman -S microsoft-edge-stable-bin --noconfirm
+# Install various software packages
+install_if_not_installed visual-studio-code-bin
+install_if_not_installed microsoft-edge-stable-bin
+install_if_not_installed brave
+install_if_not_installed google-chrome
+install_if_not_installed vlc
+install_if_not_installed gimp
+install_if_not_installed libreoffice-fresh
+install_if_not_installed nodejs
+install_if_not_installed npm
+install_if_not_installed docker
+install_if_not_installed python
+install_if_not_installed python-pip
+install_if_not_installed mongodb
+install_if_not_installed gnupg
+install_if_not_installed telegram-desktop
+install_if_not_installed mongodb-compass
+install_if_not_installed postman
+install_if_not_installed htop
 
-# Install Brave Browser
-echo "Installing Brave Browser..."
-sudo pacman -S brave --noconfirm
+# Check and start MongoDB service if not already started
+echo "Checking MongoDB service status..."
+if ! systemctl is-active --quiet mongodb; then
+  echo "Starting MongoDB service..."
+  sudo systemctl start mongodb
+else
+  echo "MongoDB service is already running."
+fi
 
-# Install Google Chrome
-echo "Installing Google Chrome..."
-sudo pacman -S google-chrome --noconfirm
+# Check and enable MongoDB service if not already enabled
+echo "Checking MongoDB service enablement status..."
+if ! systemctl is-enabled --quiet mongodb; then
+  echo "Enabling MongoDB service..."
+  sudo systemctl enable mongodb
+else
+  echo "MongoDB service is already enabled."
+fi
 
-# Install VLC Media Player
-echo "Installing VLC Media Player..."
-sudo pacman -S vlc --noconfirm
+# Check and install Mongoose via npm
+if ! npm list -g mongoose > /dev/null; then
+  echo "Installing Mongoose..."
+  npm install -g mongoose
+else
+  echo "Mongoose is already installed."
+fi
 
-# Install GIMP (GNU Image Manipulation Program)
-echo "Installing GIMP..."
-sudo pacman -S gimp --noconfirm
-
-# Install LibreOffice
-echo "Installing LibreOffice..."
-sudo pacman -S libreoffice-fresh --noconfirm
-
-# Install Node.js
-echo "Installing Node.js..."
-sudo pacman -S nodejs npm --noconfirm
-
-# Install Docker
-echo "Installing Docker..."
-sudo pacman -S docker --noconfirm
-
-# Install Python and pip
-echo "Installing Python and pip..."
-sudo pacman -S python python-pip --noconfirm
-
-# Install MongoDB
-echo "Installing MongoDB..."
-sudo pacman -S mongodb --noconfirm
-
-# Start and enable MongoDB service
-echo "Starting and enabling MongoDB service..."
-sudo systemctl start mongodb
-sudo systemctl enable mongodb
-
-# Install Mongoose via npm
-echo "Installing Mongoose..."
-npm install mongoose
-
-
-# Install gnupg
-echo "installing gnupg"
-sudo pacman -S gnupg
-
-# Install Telegram Desktop
-echo "Installing Telegram Desktop"
-sudo pacman -S telegram-desktop
-
-#Install MongoDB compass
-echo "Installing Mongodb Compass"
-sudo pacman -S mongodb-compass
-
-# Install Postman
-echo "Installing Postman..."
-sudo pacman -S postman --noconfirm
-
-# Install htop (interactive process viewer)
-echo "Installing htop..."
-sudo pacman -S htop --noconfirm
 
 echo "Installation complete (Script by Nasir Ali)!"
