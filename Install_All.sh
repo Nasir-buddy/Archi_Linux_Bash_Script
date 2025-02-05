@@ -98,13 +98,13 @@ else
   echo "MongoDB service is already enabled."
 fi
 
-# Check and install Mongoose via npm
-if ! npm list -g mongoose > /dev/null; then
-  echo "Installing Mongoose..."
-  npm install -g mongoose
-else
-  echo "Mongoose is already installed."
-fi
+# # Check and install Mongoose via npm
+# if ! npm list -g mongoose > /dev/null; then
+#   echo "Installing Mongoose..."
+#   npm install -g mongoose
+# else
+#   echo "Mongoose is already installed."
+# fi
 
 
 echo "Installation complete (Script by Nasir Ali)!"
