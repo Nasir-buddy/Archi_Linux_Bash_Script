@@ -86,6 +86,7 @@ software_list=(
   "mongodb-compass"
   "postman"
   "htop"
+  "thunderbird"
 )
 
 for software in "${software_list[@]}"; do
