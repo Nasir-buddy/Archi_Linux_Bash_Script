@@ -87,6 +87,7 @@ software_list=(
   "postman"
   "htop"
   "thunderbird"
+  "slack-desktop"
 )
 
 for software in "${software_list[@]}"; do
