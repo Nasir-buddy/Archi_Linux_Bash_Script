@@ -140,6 +140,133 @@ for utility in "${system_utilities_list[@]}"; do
   install_if_not_installed $utility
 done
 
+
+# Process Monitoring Tools
+process_monitoring=(
+    "htop"          # Interactive process viewer
+    "btop"          # Resource monitor with mouse support
+    "atop"          # Advanced system monitor
+    "bashtop"       # Resource monitor written in bash
+    "bpytop"        # Python resource monitor
+    "glances"       # Cross-platform monitoring tool
+)
+
+# Network Monitoring Tools
+network_monitoring=(
+    "iftop"         # Network bandwidth monitor
+    "nethogs"       # Per-process network bandwidth monitor
+    "bandwhich"     # Network utilization tool
+    "nload"         # Real-time network traffic monitor
+    "iptraf-ng"     # Interactive network monitor
+    "goaccess"      # Real-time web log analyzer
+)
+
+# Disk/IO Monitoring Tools
+disk_monitoring=(
+    "iotop"         # I/O monitoring per process
+    "ioping"        # I/O latency monitoring tool
+    "ftop"          # File system monitor
+    "fatrace"       # File access tracer
+    "dstat"         # Versatile disk stats tool
+)
+
+# Hardware Sensors Tools
+hardware_monitoring=(
+    "lm_sensors"    # Hardware sensor information
+    "psensor"       # Hardware temperature monitoring
+    "s-tui"         # CPU monitoring and stress testing
+    "nvtop"         # NVIDIA GPU process monitoring
+    "powertop"      # Power consumption monitor
+)
+
+# Complete System Monitoring Tools
+system_monitoring=(
+    "netdata"       # Real-time performance monitoring
+    "prometheus"    # Monitoring system & time series database
+    "grafana"       # Analytics and monitoring solution
+    "zabbix-agent"  # Enterprise monitoring solution
+    "telegraf"      # Server monitoring agent
+    "monit"         # System monitoring and error recovery
+)
+
+# Performance Analysis Tools
+performance_tools=(
+    "perf"          # Performance analysis tools
+    "sysstat"       # System performance tools collection
+    "collectl"      # Performance data collector
+    "sar"           # System activity reporter
+    "strace"        # System call tracer
+    "latencytop"    # System latency monitoring
+)
+
+# Memory Monitoring Tools
+memory_monitoring=(
+    "vmstat"        # Virtual memory statistics
+    "slabtop"       # Kernel slab cache information
+    "smem"          # Memory reporting tool
+)
+
+# Desktop Monitoring Tools
+desktop_monitoring=(
+    "conky"         # Desktop system monitor
+    "stacer"        # System optimizer and monitor
+    "gotop"         # Terminal based graphical monitor
+    "bottom"        # Rust-based system monitor
+)
+
+# System Information Tools
+system_info=(
+    "inxi"          # System information script
+    "neofetch"      # System information tool
+    "screenfetch"   # System information tool
+)
+
+# Install monitoring tools from each category
+echo "Installing Process Monitoring Tools..."
+for tool in "${process_monitoring[@]}"; do
+    install_if_not_installed $tool
+done
+
+echo "Installing Network Monitoring Tools..."
+for tool in "${network_monitoring[@]}"; do
+    install_if_not_installed $tool
+done
+
+echo "Installing Disk/IO Monitoring Tools..."
+for tool in "${disk_monitoring[@]}"; do
+    install_if_not_installed $tool
+done
+
+echo "Installing Hardware Sensors Tools..."
+for tool in "${hardware_monitoring[@]}"; do
+    install_if_not_installed $tool
+done
+
+echo "Installing Complete System Monitoring Tools..."
+for tool in "${system_monitoring[@]}"; do
+    install_if_not_installed $tool
+done
+
+echo "Installing Performance Analysis Tools..."
+for tool in "${performance_tools[@]}"; do
+    install_if_not_installed $tool
+done
+
+echo "Installing Memory Monitoring Tools..."
+for tool in "${memory_monitoring[@]}"; do
+    install_if_not_installed $tool
+done
+
+echo "Installing Desktop Monitoring Tools..."
+for tool in "${desktop_monitoring[@]}"; do
+    install_if_not_installed $tool
+done
+
+echo "Installing System Information Tools..."
+for tool in "${system_info[@]}"; do
+    install_if_not_installed $tool
+done
+
 # Check and start MongoDB service if not already started
 echo "Checking MongoDB service status..."
 if ! systemctl is-active --quiet mongodb; then
