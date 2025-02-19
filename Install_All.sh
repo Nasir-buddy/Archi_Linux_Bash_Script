@@ -72,6 +72,8 @@ software_list=(
   "microsoft-edge-stable-bin"
   "brave"
   "google-chrome"
+  "spotify"
+  "discord"
   "vlc"
   "gimp"
   "libreoffice-fresh"
