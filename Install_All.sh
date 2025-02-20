@@ -90,6 +90,7 @@ software_list=(
   "htop"
   "thunderbird"
   "slack-desktop"
+  "coreimage"
 )
 
 for software in "${software_list[@]}"; do
