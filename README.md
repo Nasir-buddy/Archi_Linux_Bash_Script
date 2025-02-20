@@ -11,7 +11,6 @@ This script automates the installation of various software packages, developer t
 - [Customization](#customization)
 - [Contribution](#contribution)
 - [Author](#author)
-- [License](#license)
 
 ## Prerequisites
 
